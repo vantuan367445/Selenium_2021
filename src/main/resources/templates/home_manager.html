@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Trang chủ</title>
+<style>
+.log{
+margin-right:30px;
+}
+.button {
+  width: 400px;
+  background-color: #4CAF50;
+  border-radius: 25px;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 7px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 25px;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+	<div th:object="${nhanvien}" align = "right" class = "log">
+	  <p>Xin chào: <span th:text="*{hoTen}"></span>.</p>
+	  <a th:href="@{/logout}">Đăng xuất</a><br/>
+	</div>
+	
+	<div align = "center">
+		<h1>Trang chủ nhân viên quản lý</h1>
+	</div>
+	<br>
+	<br>
+	
+    <div align="center">
+    	
+    	<a th:href="@{/productmanagement}"><button class = "button">Quản lý mặt hàng</button></a><br/>
+    	<a th:href="@{/developing}"><button class = "button">Quản lý nhân viên</button><br/>
+    	<a th:href="@{/developing}"><button class = "button">Quản lý loại mặt hàng</button><br/>
+    	<a th:href="@{/developing}"><button class = "button">Xem báo cáo thống kê</button><br/>
+    </div>
+</body>
+</html>

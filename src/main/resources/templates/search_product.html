@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Tìm kiếm</title>
+<style>
+.log{
+margin-right:30px;
+}
+
+.btn{
+margin-right:30px;
+}
+input[type=text] {
+  width: 350px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 400px;
+}
+
+table, th, td{
+    border:1px solid black;
+}
+table{
+    border-collapse:collapse;
+}
+tr:hover{
+    background-color:#ddd;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+	<div th:object="${nhanvien}" align = "right" class = "log">
+	  <p>Xin chào: <span th:text="*{hoTen}"></span>.</p>
+	  <a th:href="@{/logout}">Đăng xuất</a>
+	</div>
+	
+	<div align = "center">
+		<h1>Tìm kiếm mặt hàng</h1>
+	</div>
+	<br>
+	
+    <div align = "center">
+    	
+    	<form action="#" th:action="@{/products/search}" method = "get">
+	    	<input type = "text" name = "inputSearch" placeholder ="Nhập tên mặt hàng..." autofocus>
+	    	<button type="submit">Search</button>
+	    	<br/><br/>
+    	</form>
+   
+   		<h1>Danh sách mặt hàng</h1>
+	    <table border="1" cellpadding="10" style="width:100%">
+	        <thead>
+	            <tr>
+	                <th>Mã mặt hàng</th>
+	                <th>Tên mặt hàng</th>
+	                <th>Số lượng trong kho</th>
+	                <th>Giá bán</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="product : ${listProduct}">
+	            	<td>
+	            		<a th:text="${product.idMatHang}" 
+	            		th:href ="@{'/products/' + ${product.idMatHang}}"></a>
+	            	</td>
+	            	<td>
+	            		<a th:text="${product.tenMatHang}" 
+	            		th:href ="@{'/products/' + ${product.idMatHang}}"></a>
+	            	</td>
+	            	<td>
+	            		<a th:text="${product.soLuong}" 
+	            		th:href ="@{'/products/' + ${product.idMatHang}}"></a>
+	            	</td>
+	            	<td>
+	            		<a th:text="${product.giaBan}" 
+	            		th:href ="@{'/products/' + ${product.idMatHang}}"></a>
+	            	</td>
+	               
+	            </tr>
+	        </tbody>
+	    </table>
+	    <br/>
+	    
+	    <div align = "right" class = "btn">
+	    
+	    	<button type = "button" onclick="history.back()">Quay lại</button>
+	    	
+	    	<a th:href="@{/products/add}" >
+				<button type="button">Thêm mặt hàng</button>
+			</a>
+	    </div>
+	    
+    
+    </div>
+    
+    
+</body>
+</html>

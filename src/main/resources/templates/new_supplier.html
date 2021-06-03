@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Thêm nhà cung cấp</title>
+<style>
+.log{
+margin-right:30px;
+}
+input[type=text] {
+  width: 250px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+
+</style>
+</head>
+<body>
+	<div th:object="${nhanvien}" align = "right" class = "log">
+	  <p>Xin chào: <span th:text="*{hoTen}"></span>.</p>
+	  <a th:href="@{/logout}">Đăng xuất</a><br/>
+	</div>
+	
+    <div align="center">
+        <h1>Thêm mới nhà cung cấp</h1>
+        <br />
+        <form action="#" th:action="@{/suppliers/add}" th:object="${nhacungcap}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+            	
+                <tr>
+                    <td><span style="color:red">*</span> Tên nhà cung cấp:</td>
+                    <td><input type="text" th:field="*{tenNhaCungCap}" autofocus /></td>
+                    <td><span style="color:red" th:text="${error_name}"></span></td>
+                </tr>
+                <tr>
+                    <td> <span style="color:red">*</span> Tên chủ cửa hàng:</td>
+                    <td><input type="text" th:field="*{tenChuCuaHang}" /></td>
+                    <td><span style="color:red" th:text="${error_name2}"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="color:red">*</span> Địa chỉ:</td>
+                    <td><input type="text" th:field="*{diaChi}" /></td>
+                    <td><span style="color:red" th:text="${error_add}"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="color:red">*</span> Số điện thoại:</td>
+                    <td><input type="text" th:field="*{soDienThoai}" /></td>
+                    <td><span style="color:red" th:text="${error_phone}"></span></td>
+                </tr>
+                                    
+                <tr>
+                	<td><button type="button" onclick="history.back()">Quay lại</button></td>
+                    <td><button type="submit">Thêm mới</button> </td>
+                    
+                </tr>
+            </table>
+        </form>
+        
+    </div>
+</body>
+</html>

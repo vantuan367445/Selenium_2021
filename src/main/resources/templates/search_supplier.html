@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Tìm kiếm</title>
+<style>
+input[type=text] {
+  width: 350px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 400px;
+}
+.log{
+margin-right:30px;
+}
+.btn{
+margin-right:30px;
+}
+
+table, th, td{
+    border:1px solid black;
+}
+table{
+    border-collapse:collapse;
+}
+tr:hover{
+    background-color:#ddd;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+	<div th:object="${nhanvien}" align = "right" class="log">
+	  <p>Xin chào: <span th:text="*{hoTen}"></span>.</p>
+	  <a th:href="@{/logout}">Đăng xuất</a>
+	</div>
+	
+	<div align = "center">
+		<h1>Tìm kiếm nhà cung cấp</h1>
+	</div>
+	<br>
+
+    <div align = "center" class="main">
+    	
+    	<form action="#" th:action="@{/suppliers/search}" method = "get">
+	    	<input type = "text" name = "inputSearch" placeholder ="Nhập tên nhà cung cấp" autofocus>
+	    	<button type="submit">Search</button>
+	    	<br/><br/>
+    	</form>
+   
+   		<h1>Danh sách nhà cung cấp</h1>
+	    <table border="1" cellpadding="10" style="width:100%">
+	        <thead>
+	            <tr>
+	                <th>Tên nhà cung cấp</th>
+	                <th>Tên chủ cửa hàng</th>
+	                <th>Địa chỉ</th>
+	                <th>Số điện thoại</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="supplier : ${listSupplier}">
+	            	<td>
+	            		<a th:text="${supplier.tenNhaCungCap}" 
+	            		th:href ="@{'/suppliers/' + ${supplier.idNhaCungCap}}"></a>
+	            	</td>
+	                <td>
+	            		<a th:text="${supplier.tenChuCuaHang}" 
+	            		th:href ="@{'/suppliers/' + ${supplier.idNhaCungCap}}"></a>
+	            	</td>
+	            	<td>
+	            		<a th:text="${supplier.diaChi}" 
+	            		th:href ="@{'/suppliers/' + ${supplier.idNhaCungCap}}"></a>
+	            	</td>
+	            	<td>
+	            		<a th:text="${supplier.soDienThoai}" 
+	            		th:href ="@{'/suppliers/' + ${supplier.idNhaCungCap}}"></a>
+	            	</td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <br/>
+	    
+	    
+	    <div align = "right" class = "btn">
+	    	<a th:href="@{/}">
+				<button type="button" onclick="window.history.go(-1)">Quay lại</button>
+			</a>
+	    	<a th:href="@{/suppliers/new}" >
+				<button type="button">Thêm nhà cung cấp</button>
+			</a>
+	    </div>
+	    
+    </div>
+    
+    
+</body>
+</html>

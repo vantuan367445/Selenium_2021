@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Hàng nhập</title>
+<style>
+.log{
+margin-right:30px;
+}
+input[type=text] {
+  width: 250px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+input[type=number] {
+  width: 250px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+
+</style>
+</head>
+<body>
+	<div th:object="${nhanvien}" align = "right" class = "log">
+	  <p>Xin chào: <span th:text="*{hoTen}"></span>.</p>
+	  <a th:href="@{/logout}">Đăng xuất</a><br/>
+	</div>
+	
+    <div align="center">
+        <h1>Mặt hàng nhập</h1>
+        <br />
+        <form action="#" th:action="@{/goods/new}" th:object="${hangnhap}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+            	
+                <tr>
+                    <td>Mã mặt hàng:</td>
+                    <td><input type="text" th:field="*{matHang.idMatHang}" 
+                    		readonly="readonly" /></td>
+                </tr>
+                <tr>
+                    <td>Tên mặt hàng:</td>
+                    <td><input type="text" th:field="*{matHang.tenMatHang}" 
+                    		readonly="readonly"/></td>
+                </tr>
+                <tr>
+                    <td>Tên nhà cung cấp:</td>
+                    <td><input type="text" th:field="${nhacungcap.tenNhaCungCap}" 
+                    	readonly="readonly"/></td>
+       
+                </tr>
+                <tr>
+                    <td>Đơn giá:</td>
+                    <td><input type="number" th:field="*{donGia}" /></td>
+                    <td>VNĐ</td>
+                </tr>
+                
+                <tr>
+                    <td>Số lượng:</td>
+                    <td><input type="number" th:field="*{soLuong}" value = '1' min = 1/></td>
+                </tr>
+                                    
+                <tr>
+                	<td><button type="button" onclick="history.back()">Quay lại</button> </td>
+                    <td><button type="submit">Nhập Hàng</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

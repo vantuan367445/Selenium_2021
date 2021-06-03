@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Thêm mới sản phẩm</title>
+<style>
+.log{
+margin-right:30px;
+}
+input[type=text] {
+  width: 250px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+input[type=number] {
+  width: 250px;
+  transition: ease-in-out, width .35s ease-in-out;
+}
+.spin{
+	width: 257px;
+}
+</style>
+</head>
+<body>
+	<div th:object="${nhanvien}" align = "right" class = "log">
+	  <p>Xin chào: <span th:text="*{hoTen}"></span>.</p>
+	  <a th:href="@{/logout}">Đăng xuất</a><br/>
+	</div>
+	
+    <div align="center">
+        <h1>Thêm mới mặt hàng</h1>
+        <br />
+        <form action="#" th:action="@{/products/add}" th:object="${mathang}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+            	
+                <tr>
+                    <td><span style="color:red">*</span> Tên mặt hàng: </td>
+                    <td><input type="text" th:field="*{tenMatHang}" autofocus/></td>
+                    <td><span style="color:red" th:text="${error_name}"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="color:red">*</span> Loại mặt hàng:</td>
+                    <td>
+                    	<!-- <input type="text" th:field="*{loaiMatHang}" /> -->
+                    	<select th:field="*{loaiMatHang}" class = "spin">
+							<option value = "Sách">Sách</option>
+							<option value = "Đồ dùng học tập">Đồ dùng học tập</option>
+							<option value = "Đồ gia dụng">Đồ gia dụng</option>
+							<option value = "Văn phòng phẩm">Văn phòng phẩm</option>
+						</select>
+                    </td>
+                    <td><span style="color:red" th:text="${error_type}"></span></td>
+                </tr>
+                <tr>
+                    <td><span style="color:red">*</span> Giá nhập:</td>
+                    <td><input type="number" th:field="*{giaNhap}" /></td>
+                    <td>VNĐ</td>
+                    
+                </tr>
+                <tr>
+                    <td><span style="color:red">*</span> Giá bán:</td>
+                    <td><input type="number" th:field="*{giaBan}" /></td>
+                    <td>VNĐ <span style="color:red" th:text="${error_price}"></span></td>
+                </tr>
+               
+                                    
+                <tr>
+                	<td><button onclick="history.back()" type = "button">Quay lại</button></td>
+                    <td><button type="submit">Thêm mặt hàng</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

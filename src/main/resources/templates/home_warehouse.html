@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Trang chủ</title>
+<style>
+.log{
+margin-right:30px;
+}
+.button {
+  width: 450px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 7px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 25px;
+  border: none;
+}
+
+.button:hover {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+}
+</style>
+</head>
+<body>
+
+	
+		
+	<div th:object="${nhanvien}" align = "right" class = "log">
+	  <p>Xin chào: <span th:text="*{hoTen}"></span>.</p>
+	  <a th:href="@{/logout}">Đăng xuất</a><br/>
+	</div>
+	
+	<div align = "center">
+		<h1>Trang chủ nhân viên kho</h1>
+	</div>
+	<br>
+	<br>
+	
+    <div align="center">
+       <a th:href="@{/developing}">
+       		<button class = "button">Xem danh sách mặt hàng trong kho</button> 
+       	</a><br/>
+       <a th:href="@{/importproduct}">
+       		<button class = "button">Nhập hàng từ nhà cung cấp</button> 
+       	</a>
+    </div>
+</body>
+</html>

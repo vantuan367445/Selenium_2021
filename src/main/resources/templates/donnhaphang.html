@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Đơn nhập hàng</title>
+<style>
+.log{
+margin-right:30px;
+}
+</style>
+</head>
+<body>
+	<div th:object="${donnhaphang.nhanVien}" align = "right" class = "log">
+	  <p>Xin chào: <span th:text="*{hoTen}"></span>.</p>
+	  <a th:href="@{/logout}">Đăng xuất</a><br/>
+	</div>
+	
+    <div align="center">
+        <h1>Hóa đơn nhập hàng</h1>
+        <br />
+    </div>
+    
+    <h1>Nhà cung cấp</h1>
+    <table>
+	    <tr>
+	    	<td>Tên nhà cung cấp : </td>
+	    	<td><p th:text = "${donnhaphang.nhaCungCap.tenNhaCungCap}"></p></td>
+	    </tr>
+	    
+	    <tr>
+	    	<td>Tên chủ cửa hàng : </td>
+	    	<td><p th:text = "${donnhaphang.nhaCungCap.tenChuCuaHang}"></p></td>
+	    </tr>
+	    
+	    <tr>
+	    	<td>Địa chỉ : </td>
+	    	<td><p th:text = "${donnhaphang.nhaCungCap.diaChi}"></p></td>
+	    </tr>
+	    
+	    <tr>
+	    	<td>Số điện thoại : </td>
+	    	<td><p th:text = "${donnhaphang.nhaCungCap.soDienThoai}"></p></td>
+	    </tr>
+    
+    </table>
+    
+    <h1>Danh sách hàng nhập</h1>
+    <table border="1" cellpadding="10">
+	        <thead>
+	            <tr>
+	                <th>Tên mặt hàng</th>
+	                <th>Số lượng</th>
+	                <th>Đơn giá (đ)</th>
+	                <th>Tổng tiền (đ)</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="hangnhap : ${donnhaphang.listHangNhap}">
+	                <td th:text="${hangnhap.matHang.tenMatHang}"></td>
+	                <td th:text="${hangnhap.soLuong}"></td>
+	                <td th:text="${hangnhap.donGia}"></td>
+	                <td th:text="${hangnhap.donGia} * ${hangnhap.soLuong}"></td>
+
+            	</tr>
+	        </tbody>
+	    </table>
+	  	<br/>
+	  	
+	  	<table>
+	  		<tr>
+	  			<td><h3>Tổng tiền :</h3> </td>
+	  			<td><p th:text = "${donnhaphang.tongTien}"></p></td>
+	  			<td><p>VNĐ</p></td>
+	  		</tr>
+	  	</table>
+	  	
+	  	<a th:href="@{/goods/continue}"> 
+	  		<button type="button">Tiếp tục nhập hàng</button>
+		</a>
+		
+		<a th:href="@{/goods/order}"> 
+	  		<button type="button">Lưu hóa đơn nhập</button>
+		</a>
+		
+		<a th:href="@{/goods/back}"> 
+	  		<button type="button">Quay lại trang chủ</button>
+		</a>
+</body>
+</html>
